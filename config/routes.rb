@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   # get "[o nome que queremos para a URL]" => "[nome do Controller]#[nome da página]"
   get "produtos" => "produtos#index"
+  root "produtos#index"
 
   # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest

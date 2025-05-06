@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Lojadecamisetas" %></title>
+    <title><%= content_for(:title) || "Loja de camisetas" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
@@ -25,6 +25,12 @@
   </head>
 
   <body>
-    <%= yield %>
+    <!-- Barra de navegação com a marca Kunstee -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="<%= root_url %>">Kunstee</a>
+    </nav>
+    <div class="container">
+          <%= yield %>
+    </div>
   </body>
 </html>

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   resources :produtos, only: [ :new, :create, :destroy ]
+  get "/produtos/busca" => "produtos#busca", as: :busca_produto
   root "produtos#index"
 
 

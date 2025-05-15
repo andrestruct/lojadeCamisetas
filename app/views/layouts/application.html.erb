@@ -26,9 +26,20 @@
 
   <body>
     <!-- Barra de navegação com a marca Kunstee -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="<%= root_url %>">Kunstee</a>
-    </nav>
+<nav class="navbar navbar-dark bg-dark px-4">
+  <a class="navbar-brand" href="<%= root_url %>">Kunstee</a>
+  <%= form_tag busca_produto_path, method: :get, class: "ml-auto d-flex align-items-center" do %>
+    <%= text_field_tag :nome, params[:nome], class: "form-control mr-2", placeholder: "Buscar" %>
+    <%= submit_tag "Buscar", class: "btn btn-outline-light" %>
+  <% end %>
+</nav>
+
+
+
+
+
+
+
     <div class="container">
           <%= yield %>
     </div>

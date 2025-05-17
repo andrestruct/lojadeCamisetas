@@ -2,31 +2,29 @@
   <div class="alert alert-success" role="alert"><%= flash[:notice]%></div>
 <% end %>
 <div class="container mt-5">
-<table class="table table-bordered">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Descrição</th>
+        <th>Preço</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render partial: "produto", collection: @produtos_por_nome%>
+    </tbody>
+  </table>
+
+  <table class="table table-bordered">
   <thead>
     <tr>
       <th>Nome</th>
       <th>Descrição</th>
       <th>Preço</th>
-      <th>Quantidade</th>
     </tr>
   </thead>
   <tbody>
-    <% @produtos_por_nome.each do |produto| %>
-    <tr>
-      <td><%= produto.nome %></td>
-      <td><%= produto.descricao %></td>
-      <td><%= produto.preco %></td>
-      <td><%= produto.quantidade %></td>
-      <td>
-        <%=button_to "Remover", produto, 
-                                      method: :delete,
-                                      class: "btn btn-danger",
-                                      data: {confirm: "Deseja remover #{produto.nome}?"}%>
-      </td>
-      <!-- <td><a href = "/produtos/<%= produto.id%>/remove">Remover</td> -->
-    </tr>
-    <% end %>
+    <%= render partial: "produto", collection: @produtos_por_preco%>
   </tbody>
 </table>
 <%=link_to "Criar novo produto", new_produto_path%>

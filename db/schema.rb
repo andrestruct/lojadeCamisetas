@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_04_164942) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_17_191524) do
+  create_table "departamentos", force: :cascade do |t|
+    t.string "nome"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "produtos", force: :cascade do |t|
     t.string "nome"
     t.text "descricao"
@@ -18,5 +24,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_04_164942) do
     t.decimal "preco"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "departamento_id"
   end
 end

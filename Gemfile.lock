@@ -406,6 +406,7 @@ DEPENDENCIES
   brakeman
   capybara
   debug
+  i18n
   importmap-rails
   jbuilder
   kamal

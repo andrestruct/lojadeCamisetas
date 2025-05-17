@@ -3,10 +3,18 @@
     <td><%= produto.descricao %></td>
     <td><%= produto.preco %></td>
     <td>
-    <%=button_to "Remover", produto, 
+        <%=button_to "Remover", produto, 
                                     method: :delete,
                                     class: "btn btn-danger",
                                     data: {confirm: "Deseja remover #{produto.nome}?"}%>
     </td>
     <!-- <td><a href = "/produtos/<%= produto.id%>/remove">Remover</td> -->
+
+
+    <td>
+        <%= link_to "Editar", edit_produto_path(produto),
+                                    class: "btn btn-default"
+                                    %>
+    </td>
+
 </tr>

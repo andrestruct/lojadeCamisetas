@@ -1,4 +1,5 @@
 class ProdutosController < ApplicationController
+  before_action :busca_produto, only: [ :edit, :update, :destroy ]
   def index
     @produtos_por_nome = Produto.order(:nome).limit 5
     @produtos_por_preco = Produto.order :preco
@@ -7,7 +8,7 @@ class ProdutosController < ApplicationController
 
   def new
     @produto = Produto.new
-    @departamentos = Departamento.all
+    renderiza :new
   end
 
 
@@ -19,11 +20,24 @@ class ProdutosController < ApplicationController
     @produtos = Produto.where "nome like ?", "%#{@nome_a_buscar}%"
   end
 
+  def edit
+    # busca_produto
+    renderiza :edit
+  end
+
+  def update
+    # busca_produto
+    if @produto.update produto_params
+      flash[:notice] = "Produto atualizado com sucesso"
+      redirect_to root_url
+    else
+      renderiza :edit
+    end
+  end
+
 
   def create
-    valores = params.require(:produto).permit :nome, :preco, :descricao, :quantidade, :departamento_id
-
-    @produto = Produto.new valores
+    @produto = Produto.new produto_params
 
     if @produto.save
       flash[:notice] = "Produto salvo com sucesso"
@@ -34,8 +48,27 @@ class ProdutosController < ApplicationController
   end
 
   def destroy
-    id = params[:id]
-    Produto.destroy id
+    # id = params[:id]
+    # Produto.destroy id
+    # redirect_to root_url
+
+    # busca_produto
+    @produto.destroy
     redirect_to root_url
+  end
+
+  private
+  def renderiza(view)
+    @departamentos = Departamento.all
+    render view
+  end
+
+  def busca_produto
+    id = params[:id]
+    @produto = Produto.find(id)
+  end
+
+  def produto_params
+    params.require(:produto).permit :nome, :preco, :descricao, :quantidade, :departamento_id
   end
 end
